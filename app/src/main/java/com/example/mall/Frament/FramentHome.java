@@ -5,13 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.mall.Adapter.HomeAdapter;
 import com.example.mall.Bean.Post;
 import com.example.mall.R;
 
@@ -28,6 +31,8 @@ public class FramentHome extends Fragment {
     private TextView HelloHome;
     List<Post> data;
 
+    private HomeAdapter homeAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class FramentHome extends Fragment {
 
         //逻辑处理
         initView();
+
         Bmob.initialize(getActivity(), "APP_KEY");
         //初始刷新
         Refresh();
@@ -66,8 +72,12 @@ public class FramentHome extends Fragment {
                 srlayout.setRefreshing(false);
                 if (e == null) {
                     data=list;
-
-
+                    homeAdapter=new HomeAdapter(getActivity(),data);
+                    rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    rv.setAdapter(homeAdapter);
+                }else {
+                    srlayout.setRefreshing(false);
+                    Toast.makeText(getActivity(), "获取数据失败", Toast.LENGTH_SHORT).show();
                 }
 
             }
