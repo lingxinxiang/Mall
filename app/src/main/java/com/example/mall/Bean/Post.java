@@ -6,7 +6,15 @@ public class Post extends BmobObject {
 
     private User author;
 
-    private String title,content,nickname;
+    private String title,content,nickname,name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public User getAuthor() {
         return author;

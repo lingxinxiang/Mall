@@ -40,6 +40,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".activity.LonginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.ReciveActivity"/>
 
 
         <provider
