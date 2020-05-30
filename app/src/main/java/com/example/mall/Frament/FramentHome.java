@@ -16,20 +16,27 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.mall.Adapter.HomeAdapter;
 import com.example.mall.Bean.Post;
+import com.example.mall.Bean.User;
 import com.example.mall.R;
 
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListener;
 
 public class FramentHome extends Fragment {
     private RecyclerView rv;
     private SwipeRefreshLayout srlayout;
     private TextView HelloHome;
+    private TextView username,ok;
+
+
     List<Post> data;
+
 
     private HomeAdapter homeAdapter;
 
@@ -59,6 +66,23 @@ public class FramentHome extends Fragment {
                 Refresh();
             }
         });
+
+        //user加载
+        BmobUser bu=BmobUser.getCurrentUser(User.class);
+        String userid=bu.getObjectId();
+        BmobQuery<User> us=new BmobQuery<>();
+        us.getObject(userid, new QueryListener<User>() {
+            @Override
+            public void done(User user, BmobException e) {
+                if (e==null){
+                    username.setText(user.getUsername());
+            }else {
+                    username.setText("");
+                    ok.setText("");
+                }
+            }
+        });
+
 
     }
 
@@ -90,6 +114,8 @@ public class FramentHome extends Fragment {
         rv = getActivity().findViewById(R.id.recyclerview);
         srlayout = getActivity().findViewById(R.id.swipe);
         HelloHome = getActivity().findViewById(R.id.HelloHome);
+        username=getActivity().findViewById(R.id.user);
+        ok=getActivity().findViewById(R.id.hy);
 
 
     }

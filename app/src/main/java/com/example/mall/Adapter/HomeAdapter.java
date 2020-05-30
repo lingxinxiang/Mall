@@ -27,6 +27,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final int N_TYPE = 0;
     private final int F_TYPE = 1;
+    //加载15条消息
     private int Max_num = 15;
     private Boolean isfootview = true;//是否有footview
 
@@ -60,6 +61,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    //自增加8
                     Max_num += 8;
                     notifyDataSetChanged();
                 }
@@ -79,6 +81,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     int position = recyclerViewHolder.getAdapterPosition();
                     if (BmobUser.getCurrentUser(BmobUser.class) != null) {
                         Intent in = new Intent(context, ReciveActivity.class);
+                        in.putExtra("username",post.getName());
+                        in.putExtra("content",post.getContent());
+                        in.putExtra("time",post.getCreatedAt());
+
                         in.putExtra("id", data.get(position).getObjectId());
                         context.startActivity(in);
                     } else {
