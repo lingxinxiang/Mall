@@ -1,10 +1,7 @@
 package com.example.mall;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -12,14 +9,14 @@ import android.os.Bundle;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.mall.Adapter.SectionsPagerAdapter;
-import com.example.mall.Frament.FramentChat;
-import com.example.mall.Frament.FramentHome;
-import com.example.mall.Frament.FramentMine;
+import com.example.mall.Frament.FragmentChat;
+import com.example.mall.Frament.FragmentHome;
+import com.example.mall.Frament.FragmentMine;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnAdapterChangeListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnPageChangeListener{
     private ViewPager viewPager;
     private BottomNavigationBar bottomNavigationBar;
     private List<Fragment>fragments;
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED); //自适应大小
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_DEFAULT);
         bottomNavigationBar.setBarBackgroundColor(R.color.white)
-                           .setActiveColor(R.color.green_normal)
+                           .setActiveColor(R.color.blue)
                            .setInActiveColor(R.color.black);
 
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.homepage_fill,"首页").setInactiveIconResource(R.drawable.homepage))
@@ -67,13 +64,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private void initViewPager() {
         //配置ViewPager
         viewPager.setOffscreenPageLimit(3);
+
         fragments=new ArrayList<Fragment>();
-        fragments.add(new FramentHome());
-        fragments.add(new FramentChat());
-        fragments.add(new FramentMine());
+        fragments.add(new FragmentHome());
+        fragments.add(new FragmentChat());
+        fragments.add(new FragmentMine());
 
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(),fragments));
-        viewPager.addOnAdapterChangeListener(this);
+        viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
 
 
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     @Override
     public void onTabSelected(int position) {
+        viewPager.setCurrentItem(position);
 
     }
 
@@ -96,34 +95,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     }
 
-    @Override
-    public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter oldAdapter, @Nullable PagerAdapter newAdapter) {
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        bottomNavigationBar.selectTab(position);
+
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
 
     }
 }
 
-
-
-
-
-
-
-
-
-
- /*BmobUser user = BmobUser.getCurrentUser(User.class);
-        String id=user.getObjectId();
-        BmobQuery<User>myuser=new BmobQuery<User>();
-        myuser.getObject(id, new QueryListener<User>() {
-            @Override
-            public void done(User user, BmobException e) {
-                if (e==null){
-                    mTvUsername.setText(user.getUsername());
-                    mTvNickname.setText(user.getNickname());
-                }else {
-                    Toast.makeText(MainActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });*/

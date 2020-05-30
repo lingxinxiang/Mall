@@ -28,7 +28,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
 
-public class FramentHome extends Fragment {
+public class FragmentHome extends Fragment {
     private RecyclerView rv;
     private SwipeRefreshLayout srlayout;
     private TextView HelloHome;
