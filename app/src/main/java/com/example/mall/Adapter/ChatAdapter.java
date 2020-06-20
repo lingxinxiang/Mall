@@ -69,7 +69,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             recyclerViewHolder.c_name.setText(comunity.getName());
             recyclerViewHolder.c_info.setText(comunity.getInfo());
-            recyclerViewHolder.c_user.setText(comunity.getUser().getUsername());
+            recyclerViewHolder.c_user.setText(comunity.getOnwer());
 
             recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

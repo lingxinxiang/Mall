@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Mall</string>
+    <string name="hello">APP欢迎您</string>
 </resources>

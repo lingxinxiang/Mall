@@ -41,6 +41,12 @@
         <activity android:name=".activity.LonginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.ReciveActivity"/>
+        <activity android:name=".activity.PushContActivity"/>
+        <activity android:name=".activity.PushComunityActivity"/>
+        <activity android:name=".activity.MyPushActivity"/>
+        <activity android:name=".activity.MyInfoActivity"/>
+        <activity android:name=".activity.MyComunityActivit"/>
+        <activity android:name=".activity.MyCollectActivit"/>
 
 
         <provider

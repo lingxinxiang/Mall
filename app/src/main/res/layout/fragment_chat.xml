@@ -31,12 +31,6 @@
                 android:src="@drawable/shezhi_my"
                 android:tint="#ffffff" />
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/add"
-                android:tint="#fff" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -46,7 +40,13 @@
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:textStyle="" />
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/add"
+                android:tint="#fff" />
         </LinearLayout>
+
     </LinearLayout>
 
     <RelativeLayout

@@ -6,7 +6,15 @@ import cn.bmob.v3.BmobObject;
 
 public class Comunity extends BmobObject {
     private User user;
-    private String name, info;
+    private String name, info,onwer;
+
+    public String getOnwer() {
+        return onwer;
+    }
+
+    public void setOnwer(String onwer) {
+        this.onwer = onwer;
+    }
 
     public User getUser() {
         return user;
